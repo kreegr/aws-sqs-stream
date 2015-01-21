@@ -10,7 +10,7 @@ var SqsStream = function(opt) {
     objectMode: true
   }));
 
-  this.sqsClient = new AWS.SQS(opt.awsConfig);
+  this.sqsClient = opt.sqsClient || new AWS.SQS(opt.awsConfig);
   this.messageBuffer = [];
 
   this.params = _.pick(opt, 'QueueUrl', 'AttributeNames', 'MaxNumberOfMessages', 'VisibilityTimeout', 'WaitTimeSeconds');
